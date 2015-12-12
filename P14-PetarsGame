@@ -1,0 +1,57 @@
+using System;
+using System.Numerics;
+
+class PetarsGame
+{
+    static void Main()
+    {
+        ulong start = ulong.Parse(Console.ReadLine());
+        ulong end = ulong.Parse(Console.ReadLine());
+        string replacement = Console.ReadLine();
+
+        BigInteger res = 0;
+        for (ulong i = start; i < end; i++)
+        {
+            if (i % 5 == 0)
+            {
+                res = res + i;
+            }
+            else
+            {
+                res = res + (i % 5);
+            }
+        }
+
+        string result = res.ToString();
+
+        if ((res % 2) == 0)
+        {
+            for (int i = 0; i < result.Length; i++)
+            {
+                if (result[0] == result[i])
+                {
+                    Console.Write(replacement);
+                }
+                else
+                {
+                    Console.Write(result[i]);
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < result.Length; i++)
+            {
+                if (result[result.Length - 1] == result[i])
+                {
+                    Console.Write(replacement);
+                }
+                else
+                {
+                    Console.Write(result[i]);
+                }
+            }
+        }
+        Console.WriteLine();
+    }
+}
