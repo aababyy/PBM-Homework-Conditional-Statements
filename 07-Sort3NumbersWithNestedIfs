@@ -1,0 +1,85 @@
+using System;
+
+class Sort3NumbersWithNestedIfs
+{
+    static void Main()
+    {
+        Console.Write("a= ");
+        double a = double.Parse(Console.ReadLine());
+        Console.Write("b= ");
+        double b = double.Parse(Console.ReadLine());
+        Console.Write("c= ");
+        double c = double.Parse(Console.ReadLine());
+
+        //Version 1
+        if (a > b && a > c)
+        {
+            if (b > c)
+            {
+                Console.WriteLine(a + " " + b + " " + c);
+            }
+            else
+            {
+                Console.WriteLine(a + " " + c + " " + b);
+            }
+        }
+        else 
+        {
+            if (b > c)
+            {
+                Console.WriteLine(b + " " + c + " " + a);
+            }
+            else
+            {
+                Console.WriteLine(c + " " + b + " " + a);
+            }
+        }
+
+        //Version 2
+        /*
+        Console.Write("a= ");
+        double aa = double.Parse(Console.ReadLine());
+        Console.Write("b= ");
+        double bb = double.Parse(Console.ReadLine());
+        Console.Write("c= ");
+        double cc = double.Parse(Console.ReadLine());
+
+        if (aa > bb)
+        {
+            if (aa > cc)
+            {
+                if (bb > cc)
+                {
+                    Console.WriteLine(aa + " " + bb + " " + cc);
+                }
+                else
+                {
+                    Console.WriteLine(aa + " " + cc + " " + bb);
+                }
+            }
+            else
+            {
+                Console.WriteLine(cc + " " + aa + " " + bb);
+            }
+        }
+        else
+        {
+            if (bb > cc)
+            {
+                if (aa > cc)
+                {
+                    Console.WriteLine(bb + " " + aa + " " + cc);
+                }
+                else
+                {
+                    Console.WriteLine(bb + " " + cc + " " + aa);
+                }
+            }
+            else
+            {
+                Console.WriteLine(cc + " " + bb + " " + aa);
+            }
+        }
+    */
+    }
+}
