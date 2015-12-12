@@ -1,0 +1,30 @@
+using System;
+using System.Threading;
+using System.Globalization;
+
+class BeerTime
+{
+    static void Main()
+    {
+        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+
+        Console.WriteLine("Please enter a time in format “hh:mm tt”:");
+        string t = Console.ReadLine();
+        DateTime time;
+        if (!(DateTime.TryParse(t, out time)))
+        {
+            Console.WriteLine("invalid time");
+        }
+        else
+        {
+            if ((time.Hour >= 3) && (time.Hour < 13))
+            {
+                Console.WriteLine("non-beer time");
+            }
+            else
+            {
+                Console.WriteLine("beer time");
+            }
+        }
+    }
+}
