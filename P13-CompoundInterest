@@ -1,0 +1,24 @@
+using System;
+
+class CompoundInterest
+{
+    static void Main()
+    {
+        decimal p = decimal.Parse(Console.ReadLine());
+        int n = int.Parse(Console.ReadLine());
+        decimal i = decimal.Parse(Console.ReadLine());
+        decimal f = decimal.Parse(Console.ReadLine());
+
+        decimal bank = p * (decimal)Math.Pow((double)(1 + i), n);
+        decimal friend = p * (1 + f);
+
+        if (bank < friend)
+        {
+            Console.WriteLine("{0:0.00} Bank", bank);
+        }
+        else
+        {
+            Console.WriteLine("{0:0.00} Friend", friend);
+        }
+    }
+}
