@@ -1,0 +1,57 @@
+using System;
+
+class ZeroSubset
+{
+    static void Main()
+    {
+        Console.WriteLine("Please enter five integers: ");
+        string[] num = Console.ReadLine().Split(' ');
+        int[] numbers = new int[5];
+        bool isThereZeroSubset = false;
+
+        for (int i = 0; i < 5; i++)
+        {
+            numbers[i] = int.Parse(num[i]);
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = i + 1; j < 5; j++)
+            {
+                for (int k = j + 1; k < 5; k++)
+                {
+                    for (int l = k + 1; l < 5; l++)
+                    {
+                        for (int m = l + 1; m < 5; m++)
+                        {
+                            if (numbers[i] + numbers[j] + numbers[k] + numbers[l] + numbers[m] == 0)
+                            {
+                                isThereZeroSubset = true;
+                                Console.WriteLine("{0} + {1} + {2} + {3} + {4} = 0", numbers[i], numbers[j], numbers[k], numbers[l], numbers[m]);
+                            }
+                        }
+                        if (numbers[i] + numbers[j] + numbers[k] + numbers[l] == 0)
+                        {
+                            isThereZeroSubset = true;
+                            Console.WriteLine("{0} + {1} + {2} + {3} = 0", numbers[i], numbers[j], numbers[k], numbers[l]);
+                        }
+                    }
+                    if (numbers[i] + numbers[j] + numbers[k] == 0)
+                    {
+                        isThereZeroSubset = true;
+                        Console.WriteLine("{0} + {1} + {2} = 0", numbers[i], numbers[j], numbers[k]);
+                    }
+                }
+                if (numbers[i] + numbers[j] == 0)
+                {
+                    isThereZeroSubset = true;
+                    Console.WriteLine("{0} + {1} = 0", numbers[i], numbers[j]);
+                }
+            }
+        }
+        if (!isThereZeroSubset)
+        {
+            Console.WriteLine("no zero subset");
+        }
+    }
+}
