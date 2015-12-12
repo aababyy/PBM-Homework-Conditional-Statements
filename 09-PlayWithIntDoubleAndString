@@ -1,0 +1,36 @@
+using System;
+
+class PlayWithIntDoubleAndString
+{
+    static void Main()
+    {
+        Console.WriteLine("Please choose a type:");
+        Console.WriteLine("1 --> int");
+        Console.WriteLine("2 --> double");
+        Console.WriteLine("3 --> string");
+        int a = int.Parse(Console.ReadLine());
+
+        switch (a)
+        {
+            case 1:
+                Console.WriteLine("Please enter an integer:");
+                int a1 = int.Parse(Console.ReadLine());
+                Console.WriteLine(a1 + 1);
+                break;
+
+            case 2:
+                Console.WriteLine("Please enter a double:");
+                double a2 = double.Parse(Console.ReadLine());
+                Console.WriteLine(a2 + 1);
+                break;
+
+            case 3:
+                Console.WriteLine("Please enter a string:");
+                string a3 = Console.ReadLine();
+                Console.WriteLine(a3 + "*");
+                break;
+
+            default: break;
+        }
+    }
+}
