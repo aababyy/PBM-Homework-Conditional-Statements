@@ -1,0 +1,56 @@
+using System;
+
+class NumberAsWords
+{
+    static void Main()
+    {
+        Console.WriteLine("Please enter an integer number (min 0; max 999):");
+        int n = int.Parse(Console.ReadLine());
+
+        if ((n < 0) || (n > 999))
+        {
+            Console.WriteLine("This is not a valid number.");
+        }
+
+        else
+        {
+            int xxx = n / 100;
+            int xx = (n / 10) % 10;
+            int x = n % 10;
+            
+            string words = "";
+            string[] wordX = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+            string[] wordXX = {"zero", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+
+            if (n < 20)
+            {
+                words = wordX[n];
+                Console.WriteLine(char.ToUpper(words[0]) + words.Substring(1)); 
+            }
+
+            else if ((n >= 20) && (n < 100))
+            {
+                words = wordXX[xx] + " " + wordX[x];
+                Console.WriteLine(char.ToUpper(words[0]) + words.Substring(1));
+            }
+
+            else if ((xxx > 0) && (xx == 0) && (x == 0))
+            {
+                words = wordX[xxx] + " hundred";
+                Console.WriteLine(char.ToUpper(words[0]) + words.Substring(1));
+            }
+
+            else if ((xxx > 0) && ((xx == 0) || (xx == 1)))
+            {
+                words = wordX[xxx] + " hundred and " + wordX[n % 100];
+                Console.WriteLine(char.ToUpper(words[0]) + words.Substring(1));
+            }
+
+            else
+            {
+                words = wordX[xxx] + " hundred and " + wordXX[xx] + " " + wordX[x];
+                Console.WriteLine(char.ToUpper(words[0]) + words.Substring(1));
+            }
+        }
+    }
+}
