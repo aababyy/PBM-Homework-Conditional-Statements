@@ -1,0 +1,205 @@
+using System;
+
+class ZeroSubsetNew
+{
+    static void Main()
+    {
+        Console.WriteLine("Please enter 5 integer numbers, all in a single line, separated by a space");
+        string[] numbers = Console.ReadLine().Split(' ');
+
+        int[] num = new int[5];
+        for (int i = 0; i < 5; i++)
+        {
+            num[i] = int.Parse(numbers[i]);
+        }
+        Array.Sort(num);
+       
+        if ((num[0] >= 0) && (num[4] > 0) || ((num[0] < 0) && (num[4] <= 0)))
+        {
+            Console.WriteLine("no zero subset");
+        }
+
+        if ((num[0] == 0) && (num[4] == 0))
+        {
+            Console.WriteLine("0 + 0 + 0 + 0 + 0 = 0");
+        }
+
+        else
+        {
+            int countNeg = 0;
+            do
+            {
+                if (num[countNeg] <= 0)
+                {
+                    countNeg++;
+                }
+            }
+            while (num[countNeg] <= 0);
+
+            int[] numNeg = new int[countNeg];
+            for (int i = 0; i < countNeg; i++)
+            {
+                numNeg[i] = num[i];
+            }
+
+            int countPos = 5;
+            do
+            {
+                if (num[countPos - 1] >= 0)
+                {
+                    countPos--;
+                }
+            }
+            while (num[countPos - 1] >= 0);
+            countPos = 5 - countPos;
+
+            int count = 1;
+            int[] numPos = new int[countPos];
+            for (int i = (countPos - 1); i >= 0; i--)
+            {
+                numPos[i] = num[5 - count];
+                count++;
+            }
+
+            int[] sumNeg = new int[15];
+            if (numNeg.Length == 1)
+            {
+                sumNeg[0] = numNeg[0];
+            }
+            else if (numNeg.Length == 2)
+            {
+                sumNeg[0] = numNeg[0];
+                sumNeg[1] = numNeg[1];
+                sumNeg[4] = numNeg[0] + numNeg[1];
+            }
+            else if (numNeg.Length == 3)
+            {
+                sumNeg[0] = numNeg[0];
+                sumNeg[1] = numNeg[1];
+                sumNeg[2] = numNeg[2];
+                sumNeg[4] = numNeg[0] + numNeg[1];
+                sumNeg[5] = numNeg[0] + numNeg[2];
+                sumNeg[7] = numNeg[1] + numNeg[2];
+                sumNeg[10] = numNeg[0] + numNeg[1] + numNeg[2];
+            }
+            else
+            {
+                sumNeg[0] = numNeg[0];
+                sumNeg[1] = numNeg[1];
+                sumNeg[2] = numNeg[2];
+                sumNeg[3] = numNeg[3];
+                sumNeg[4] = numNeg[0] + numNeg[1];
+                sumNeg[5] = numNeg[0] + numNeg[2];
+                sumNeg[6] = numNeg[0] + numNeg[3];
+                sumNeg[7] = numNeg[1] + numNeg[2];
+                sumNeg[8] = numNeg[1] + numNeg[3];
+                sumNeg[9] = numNeg[2] + numNeg[3];
+                sumNeg[10] = numNeg[0] + numNeg[1] + numNeg[2];
+                sumNeg[11] = numNeg[0] + numNeg[1] + numNeg[3];
+                sumNeg[12] = numNeg[0] + numNeg[2] + numNeg[3];
+                sumNeg[13] = numNeg[1] + numNeg[2] + numNeg[3];
+                sumNeg[14] = numNeg[0] + numNeg[1] + numNeg[2] + numNeg[3];
+            }
+
+            int[] sumPos = new int[15];
+            if (numPos.Length == 1)
+            {
+                sumPos[0] = numPos[0];
+            }
+            else if (numPos.Length == 2)
+            {
+                sumPos[0] = numPos[0];
+                sumPos[1] = numPos[1];
+                sumPos[4] = numPos[0] + numPos[1];
+            }
+            else if (numPos.Length == 3)
+            {
+                sumPos[0] = numPos[0];
+                sumPos[1] = numPos[1];
+                sumPos[2] = numPos[2];
+                sumPos[4] = numPos[0] + numPos[1];
+                sumPos[5] = numPos[0] + numPos[2];
+                sumPos[7] = numPos[1] + numPos[2];
+                sumPos[10] = numPos[0] + numPos[1] + numPos[2];
+            }
+            else
+            {
+                sumPos[0] = numPos[0];
+                sumPos[1] = numPos[1];
+                sumPos[2] = numPos[2];
+                sumPos[3] = numPos[3];
+                sumPos[4] = numPos[0] + numPos[1];
+                sumPos[5] = numPos[0] + numPos[2];
+                sumPos[6] = numPos[0] + numPos[3];
+                sumPos[7] = numPos[1] + numPos[2];
+                sumPos[8] = numPos[1] + numPos[3];
+                sumPos[9] = numPos[2] + numPos[3];
+                sumPos[10] = numPos[0] + numPos[1] + numPos[2];
+                sumPos[11] = numPos[0] + numPos[1] + numPos[3];
+                sumPos[12] = numPos[0] + numPos[2] + numPos[3];
+                sumPos[13] = numPos[1] + numPos[2] + numPos[3];
+                sumPos[14] = numPos[0] + numPos[1] + numPos[2] + numPos[3];
+            }
+
+            bool isThereSum0 = false;
+            for (int i = 0; i < sumNeg.Length; i++)
+            {
+                for (int j = 0; j < sumPos.Length; j++)
+                {
+                    if (((sumNeg[i] + sumPos[j]) == 0) && (sumNeg[i] != 0) && (sumPos[j] != 0))
+                    {
+                        isThereSum0 = true;
+                        switch (i)
+                        {
+                            case 0: Console.Write(numNeg[0] + " + "); break;
+                            case 1: Console.Write(numNeg[1] + " + "); break;
+                            case 2: Console.Write(numNeg[2] + " + "); break;
+                            case 3: Console.Write(numNeg[3] + " + "); break;
+                            case 4: Console.Write(numNeg[0] + " + " + numNeg[1] + " + "); break;
+                            case 5: Console.Write(numNeg[0] + " + " + numNeg[2] + " + "); break;
+                            case 6: Console.Write(numNeg[0] + " + " + numNeg[3] + " + "); break;
+                            case 7: Console.Write(numNeg[1] + " + " + numNeg[2] + " + "); break;
+                            case 8: Console.Write(numNeg[1] + " + " + numNeg[3] + " + "); break;
+                            case 9: Console.Write(numNeg[2] + " + " + numNeg[3] + " + "); break;
+                            case 10: Console.Write(numNeg[0] + " + " + numNeg[1] + " + " + numNeg[2] + " + "); break;
+                            case 11: Console.Write(numNeg[0] + " + " + numNeg[1] + " + " + numNeg[3] + " + "); break;
+                            case 12: Console.Write(numNeg[0] + " + " + numNeg[2] + " + " + numNeg[3] + " + "); break;
+                            case 13: Console.Write(numNeg[1] + " + " + numNeg[2] + " + " + numNeg[3] + " + "); break;
+                            case 14: Console.Write(numNeg[0] + " + " + numNeg[1] + " + " + numNeg[2] + " + " + numNeg[3] + " + "); break;
+                            default: break;
+                        }
+
+                        switch (j)
+                        {
+                            case 0: Console.Write(numPos[0] + " = 0"); break;
+                            case 1: Console.Write(numPos[1] + " = 0"); break;
+                            case 2: Console.Write(numPos[2] + " = 0"); break;
+                            case 3: Console.Write(numPos[3] + " = 0"); break;
+                            case 4: Console.Write(numPos[0] + " + " + numPos[1] + " = 0"); break;
+                            case 5: Console.Write(numPos[0] + " + " + numPos[2] + " = 0"); break;
+                            case 6: Console.Write(numPos[0] + " + " + numPos[3] + " = 0"); break;
+                            case 7: Console.Write(numPos[1] + " + " + numPos[2] + " = 0"); break;
+                            case 8: Console.Write(numPos[1] + " + " + numPos[3] + " = 0"); break;
+                            case 9: Console.Write(numPos[2] + " + " + numPos[3] + " = 0"); break;
+                            case 10: Console.Write(numPos[0] + " + " + numPos[1] + " + " + numPos[2] + " = 0"); break;
+                            case 11: Console.Write(numPos[0] + " + " + numPos[1] + " + " + numPos[3] + " = 0"); break;
+                            case 12: Console.Write(numPos[0] + " + " + numPos[2] + " + " + numPos[3] + " = 0"); break;
+                            case 13: Console.Write(numPos[1] + " + " + numPos[2] + " + " + numPos[3] + " = 0"); break;
+                            case 14: Console.Write(numPos[0] + " + " + numPos[1] + " + " + numPos[2] + " + " + numPos[3] + " = 0"); break;
+                            default: break;
+                        }
+                        Console.WriteLine();
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+            if (isThereSum0 == false)
+            {
+                Console.WriteLine("no zero subset");
+            }
+        }
+    }
+}
