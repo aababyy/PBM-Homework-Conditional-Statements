@@ -1,0 +1,52 @@
+using System;
+
+class BonusScore
+{
+    static void Main()
+    {
+        //Version 1
+        Console.Write("score= ");
+        int score = int.Parse(Console.ReadLine());
+
+        if ((score >= 1) && (score <= 3))
+        {
+            Console.WriteLine(score * 10);
+        }
+        else if ((score >= 4) && (score <= 6))
+        {
+            Console.WriteLine(score * 100);
+        }
+        else if ((score >= 7) && (score <= 9))
+        {
+            Console.WriteLine(score * 1000);
+        }
+        else
+        {
+            Console.WriteLine("invalid score");
+        }
+
+        //Version 2
+        /*
+        Console.Write("score= ");
+        int score2 = int.Parse(Console.ReadLine());
+
+        switch (score2)
+        {
+            case 1:
+            case 2:
+            case 3:
+                Console.WriteLine(score2 * 10); break;
+            case 4:
+            case 5:
+            case 6:
+                Console.WriteLine(score2 * 100); break;
+            case 7:
+            case 8:
+            case 9:
+                Console.WriteLine(score2 * 1000); break;
+            default:
+                Console.WriteLine("invalid score"); break;
+        }
+    */
+    }
+}
