@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+
+class ZeroSubsetNewNewNew
+{
+    static void Main()
+    {
+        Console.WriteLine("Please enter 5 integer numbers, all in a single line, separated by a space");
+        string[] numbers = Console.ReadLine().Split(' ');
+        int n = numbers.Length;
+        int s = 0;
+        bool existsZeroSubset = false;
+
+        int[] num = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            num[i] = int.Parse(numbers[i]);
+        }
+        //Array.Sort(num);
+
+        int comb = (int)Math.Pow(2, n);
+
+        for (int i = 0; i < comb; i++)
+        {
+            int sum = 0;
+            List<int> numbersI = new List<int>();
+
+            for (int j = 0; j < n; j++)
+            {
+                int mask = 1 << j;
+                int iAndMask = i & mask;
+                int bit = iAndMask >> j;
+
+
+                if (bit == 1)
+                {
+                    numbersI.Add(num[j]);
+                    sum += num[j];
+                }
+            }
+
+            if (sum == s && numbersI.Count > 0)
+            {
+                existsZeroSubset = true;
+                Console.WriteLine(string.Join(" + ", numbersI) + " = " + s);
+            }
+        }
+
+        if (existsZeroSubset == false)
+        {
+            Console.WriteLine("no zero subset");
+        }
+    }
+}
